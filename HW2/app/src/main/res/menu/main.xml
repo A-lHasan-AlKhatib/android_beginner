@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/img"
+        android:icon="@drawable/cam"
+        android:title="Camera"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/gal"
+        android:icon="@drawable/ic_photo_black_24dp"
+        android:title="Galary"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/url"
+        android:icon="@drawable/wifi"
+        android:title="URL"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/call"
+        android:icon="@drawable/phone"
+        android:title="Call"
+        app:showAsAction="always" />
+</menu>
