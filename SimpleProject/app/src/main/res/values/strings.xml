@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">SimpleProject</string>
+    <string name="details_hint">Details</string>
+    <string name="color_hint">Color</string>
+    <string name="density_hint">Density</string>
+    <string name="description_hint">Description</string>
+    <string name="img">img</string>
+    <string name="menu_search">Search</string>
+    <string name="details_menu_save">save</string>
+    <string name="details_menu_delete">delete</string>
+    <string name="details_menu_edit">eidt</string>
 </resources>
