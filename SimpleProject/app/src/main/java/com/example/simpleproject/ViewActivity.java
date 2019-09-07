@@ -21,6 +21,7 @@ public class ViewActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextInputEditText et_model, et_color, et_dpl, et_desc;
     private ImageView iv;
+    private MyDB db;
     public static final int PICK_IMAGE_RQ = 1;
     public static final int ADD_CAR_RESULT_CODE = 2;
     public static final int EDIT_CAR_RESULT_CODE = 3;
@@ -39,6 +40,8 @@ public class ViewActivity extends AppCompatActivity {
         et_dpl = findViewById(R.id.details_dpl);
         et_desc = findViewById(R.id.details_desc);
 
+        db = new MyDB(this);
+
         Intent intent = getIntent();
         carId = intent.getIntExtra(MainActivity.CAR_KEY, -1);
         if (carId == -1) {
@@ -53,8 +56,10 @@ public class ViewActivity extends AppCompatActivity {
             });
         } else {
             switchFields(false);
-            Car c = new Car(6, "BMW", R.drawable.car, "Silver", 4.3, "Brand new");
-            setCarToFields(c);
+            Car c = db.getCar(carId);
+            db.close();
+            if (c != null)
+                setCarToFields(c);
         }
     }
 
@@ -69,7 +74,7 @@ public class ViewActivity extends AppCompatActivity {
     }
 
     private void setCarToFields(Car c) {
-        iv.setImageResource(c.getImg());
+        iv.setImageURI(Uri.parse(c.getImg()));
         et_model.setText(c.getModel());
         et_color.setText(c.getColor());
         et_dpl.setText(String.valueOf(c.getDpl()));
@@ -137,8 +142,8 @@ public class ViewActivity extends AppCompatActivity {
             case R.id.details_menu_delete:
 
                 Car c = new Car(carId, null, 0, null, 0, null);
-                    // delete from DB using id
-                setResult(RESULT_OK,null);
+                // delete from DB using id
+                setResult(RESULT_OK, null);
 
                 finish();
                 return true;

@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton floating;
     private Toolbar toolbar;
     private CarRecViewAdapter adapter;
+    private MyDB db;
+
     private static final int PERMISSION_REQ_CODE = 5;
     public static final int ADD_CAR_REQ_CODE = 1;
     public static final int EDIT_CAR_REQ_CODE = 2;
@@ -46,7 +48,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         rv = findViewById(R.id.main_rec_view);
         floating = findViewById(R.id.main_floating_btn);
-        adapter = new CarRecViewAdapter(new ArrayList<Car>(), new OnCarClickedListener() {
+        db = new MyDB(this);
+        ArrayList<Car> cars = db.getAllCars();
+        db.close();
+        adapter = new CarRecViewAdapter(cars, new OnCarClickedListener() {
             @Override
             public void onItemClick(int carId) {
                 Intent intent = new Intent(getBaseContext(), ViewActivity.class);

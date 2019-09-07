@@ -1,21 +1,27 @@
 package com.example.simpleproject;
 
-import android.media.Image;
-
 public class Car {
     private int id;
     private String model;
-    private int img;
     private String color;
     private double dpl;
+    private String img;
     private String description;
 
-    public Car(int id, String model, int img, String color, double dpl, String description) {
+    public Car(int id, String model, String color, double dpl, String img, String description) {
         this.id = id;
         this.model = model;
-        this.img = img;
         this.color = color;
         this.dpl = dpl;
+        this.img = img;
+        this.description = description;
+    }
+
+    public Car(String model, String color, double dpl, String img, String description) {
+        this.model = model;
+        this.color = color;
+        this.dpl = dpl;
+        this.img = img;
         this.description = description;
     }
 
@@ -35,11 +41,11 @@ public class Car {
         this.model = model;
     }
 
-    public int getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

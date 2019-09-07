@@ -3,6 +3,7 @@ package com.example.simpleproject;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,8 @@ public class CarRecViewAdapter extends RecyclerView.Adapter<CarRecViewAdapter.Ca
     @Override
     public void onBindViewHolder(@NonNull CarViewHolder holder, int position) {
         Car c = cars.get(position);
-        holder.iv.setImageResource(c.getImg());
+        if (c.getImg() != null && !c.getImg().isEmpty())
+            holder.iv.setImageURI(Uri.parse(c.getImg()));
         holder.color.setText(c.getColor());
         holder.dpl.setText(String.valueOf(c.getDpl()));
         holder.model.setText(c.getModel());
