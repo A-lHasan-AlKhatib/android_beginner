@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -51,6 +52,8 @@ public class ViewActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent in = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    //1 here 1
+                    in.setType("image/*");
                     startActivityForResult(in, PICK_IMAGE_RQ);
                 }
             });
@@ -60,6 +63,7 @@ public class ViewActivity extends AppCompatActivity {
             db.close();
             if (c != null)
                 setCarToFields(c);
+
         }
     }
 
@@ -67,14 +71,17 @@ public class ViewActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == PICK_IMAGE_RQ && resultCode == RESULT_OK) {
             if (data != null) {
-                uri = data.getData();
-                iv.setImageURI(uri);
+                if (data != null) {
+                    uri = data.getData();
+                    iv.setImageURI(uri);
+                }
             }
         }
     }
 
     private void setCarToFields(Car c) {
-        iv.setImageURI(Uri.parse(c.getImg()));
+        if (c.getImg() != null && !c.getImg().isEmpty())
+            iv.setImageURI(Uri.parse(c.getImg()));
         et_model.setText(c.getModel());
         et_color.setText(c.getColor());
         et_dpl.setText(String.valueOf(c.getDpl()));
@@ -129,21 +136,38 @@ public class ViewActivity extends AppCompatActivity {
                 dpl = Double.parseDouble(et_dpl.getText().toString());
                 if (uri != null)
                     imagePath = uri.toString();
-                Car car = new Car(0, model, Integer.parseInt(imagePath), color, dpl, desc);
+                boolean res;
+                Car car = new Car(carId, model, color, dpl, imagePath, desc);
+                db = new MyDB(this);
                 if (carId == -1) {
-                    //insert
+                    res = db.insertCar(car);
                     setResult(ADD_CAR_RESULT_CODE, null);
+                    if (res)
+                        Toast.makeText(getBaseContext(), "Added Successfully", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(getBaseContext(), "Add Failed", Toast.LENGTH_LONG).show();
+                    finish();
                 } else {
-                    //edit
+                    res = db.updateCar(car);
                     setResult(EDIT_CAR_RESULT_CODE, null);
+                    if (res)
+                        Toast.makeText(getBaseContext(), "Modified Successfully", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(getBaseContext(), "Modify Failed", Toast.LENGTH_LONG).show();
+                    finish();
                 }
-                finish();
+
+                db.close();
                 return true;
             case R.id.details_menu_delete:
-
-                Car c = new Car(carId, null, 0, null, 0, null);
-                // delete from DB using id
-                setResult(RESULT_OK, null);
+                db = new MyDB(this);
+                Car c = new Car(carId);
+                    res = db.deleteCar(c);
+                    if (res)
+                        Toast.makeText(getBaseContext(), "Deleted Successfully", Toast.LENGTH_LONG).show();
+                    else
+                        Toast.makeText(getBaseContext(), "Delete Failed", Toast.LENGTH_LONG).show();
+                    setResult(RESULT_OK, null);
 
                 finish();
                 return true;
@@ -153,8 +177,8 @@ public class ViewActivity extends AppCompatActivity {
                 MenuItem edit = toolbar.getMenu().findItem(R.id.details_menu_edit);
                 MenuItem delete = toolbar.getMenu().findItem(R.id.details_menu_delete);
                 delete.setVisible(false);
-                save.setVisible(false);
-                edit.setVisible(true);
+                edit.setVisible(false);
+                save.setVisible(true);
 
                 return true;
             default:

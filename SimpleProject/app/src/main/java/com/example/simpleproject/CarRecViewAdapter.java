@@ -37,11 +37,18 @@ public class CarRecViewAdapter extends RecyclerView.Adapter<CarRecViewAdapter.Ca
         Car c = cars.get(position);
         if (c.getImg() != null && !c.getImg().isEmpty())
             holder.iv.setImageURI(Uri.parse(c.getImg()));
+        else
+            holder.iv.setImageResource(R.drawable.car);
         holder.color.setText(c.getColor());
         holder.dpl.setText(String.valueOf(c.getDpl()));
         holder.model.setText(c.getModel());
         holder.iv.setTag(c.getId());
-        holder.color.setTextColor(Color.parseColor(String.valueOf(c.getColor())));
+        try {
+            holder.color.setTextColor(Color.parseColor(String.valueOf(c.getColor())));
+        } catch (Exception ignored){
+
+        }
+
     }
 
     @Override
@@ -64,7 +71,7 @@ public class CarRecViewAdapter extends RecyclerView.Adapter<CarRecViewAdapter.Ca
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClick((Integer) iv.getTag());
+                    listener.onItemClick((int) iv.getTag());
                 }
             });
         }

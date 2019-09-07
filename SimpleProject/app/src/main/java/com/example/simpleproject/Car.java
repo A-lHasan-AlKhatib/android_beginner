@@ -8,6 +8,10 @@ public class Car {
     private String img;
     private String description;
 
+    public Car(int id) {
+        this.id = id;
+    }
+
     public Car(int id, String model, String color, double dpl, String img, String description) {
         this.id = id;
         this.model = model;

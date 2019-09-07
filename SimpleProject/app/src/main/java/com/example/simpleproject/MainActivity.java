@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQ_CODE);
-        }
 
         toolbar = findViewById(R.id.main_details_toolbar);
         setSupportActionBar(toolbar);
@@ -55,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int carId) {
                 Intent intent = new Intent(getBaseContext(), ViewActivity.class);
-                intent.putExtra(CAR_KEY, EDIT_CAR_REQ_CODE);
+                intent.putExtra(CAR_KEY, carId);
                 startActivityForResult(intent, EDIT_CAR_REQ_CODE);
             }
         });
@@ -81,8 +79,9 @@ public class MainActivity extends AppCompatActivity {
         view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //fetch from db
-                ArrayList<Car> cars = new ArrayList<>();
+                db = new MyDB(getBaseContext());
+                ArrayList<Car> cars = db.getCarsByModel(query);
+                db.close();
                 adapter.setCars(cars);
                 adapter.notifyDataSetChanged();
                 return false;
@@ -90,8 +89,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                //fetch from db
-                ArrayList<Car> cars = new ArrayList<>();
+                db = new MyDB(getBaseContext());
+                ArrayList<Car> cars = db.getCarsByModel(newText);
+                db.close();
                 adapter.setCars(cars);
                 adapter.notifyDataSetChanged();
                 return false;
@@ -99,11 +99,14 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+
+
         view.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                //get all cars from DB
-                ArrayList<Car> cars = new ArrayList<>();
+                db = new MyDB(getBaseContext());
+                ArrayList<Car> cars = db.getAllCars();
+                db.close();
                 adapter.setCars(cars);
                 adapter.notifyDataSetChanged();
                 return false;
@@ -119,9 +122,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == ADD_CAR_REQ_CODE) {
-            //تحديث بيانات ال list
-            //adapter.setCars();
+        if (requestCode == ADD_CAR_REQ_CODE || requestCode == EDIT_CAR_REQ_CODE) {
+            db = new MyDB(this);
+            ArrayList<Car> cars = db.getAllCars();
+            db.close();
+            adapter.setCars(cars);
             adapter.notifyDataSetChanged();
         }
     }
@@ -129,10 +134,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == PERMISSION_REQ_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            } else {
-
+            if (!(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQ_CODE);
+                }
             }
         }
     }
