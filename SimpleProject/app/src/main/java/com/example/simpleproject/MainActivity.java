@@ -40,7 +40,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQ_CODE);
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+        } else {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQ_CODE);
+        }
 
         toolbar = findViewById(R.id.main_details_toolbar);
         setSupportActionBar(toolbar);
@@ -98,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
 
 
         view.setOnCloseListener(new SearchView.OnCloseListener() {

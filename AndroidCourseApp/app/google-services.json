@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "92697952655",
+    "firebase_url": "https://androidproject-96585.firebaseio.com",
+    "project_id": "androidproject-96585",
+    "storage_bucket": "androidproject-96585.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92697952655:android:be1ddc86ce945e55",
+        "android_client_info": {
+          "package_name": "com.jmaelagha.pc.androidcourseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92697952655-o348jj90306bt1sg2iso1vi032pmo5n5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jmaelagha.pc.androidcourseapp",
+            "certificate_hash": "65700a8b84caa59a8046cbca7be5f10b9e9ceb68"
+          }
+        },
+        {
+          "client_id": "92697952655-d2rcrfr833ikvcvf49ttaskfpge2kh4d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jmaelagha.pc.androidcourseapp",
+            "certificate_hash": "e488b8c7b9049eb262394de267261a191c75da8b"
+          }
+        },
+        {
+          "client_id": "92697952655-2bqbcushuid8p9jgbau832d6fjtr10i0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBblE7Fi2iLmdnAID4QAS4_KhdCxTs3dX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92697952655-2bqbcushuid8p9jgbau832d6fjtr10i0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92697952655:android:bd204c6742fe7804",
+        "android_client_info": {
+          "package_name": "com.jmaelagha.pc.androidproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92697952655-3pkqcbj84v5h3a5s20grfaduc6ktkrk3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jmaelagha.pc.androidproject",
+            "certificate_hash": "e488b8c7b9049eb262394de267261a191c75da8b"
+          }
+        },
+        {
+          "client_id": "92697952655-2bqbcushuid8p9jgbau832d6fjtr10i0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBblE7Fi2iLmdnAID4QAS4_KhdCxTs3dX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92697952655-2bqbcushuid8p9jgbau832d6fjtr10i0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
