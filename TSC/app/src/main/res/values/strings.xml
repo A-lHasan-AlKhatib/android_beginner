@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">TSC</string>
+    <string name="about_tab">About</string>
+    <string name="browse_tab">Browse</string>
+    <string name="maintenance_tab">Maintenance</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="facebook_todo">Facebook Page</string>
+    <string name="email_todo">Email Address</string>
+    <string name="phone_todo">Phone Number</string>
+    <string name="tele_todo">Telephone Number</string>
+    <string name="map_todo">TSC Map Location</string>
+    <string name="card_icon_desc">Card Icon</string>
+    <string name="card_name">Name</string>
+    <string name="card_desc">Description</string>
+    <string name="card_price">Price</string>
+    <string name="maintenance_id_text">Enter the device id</string>
+    <string name="maintenance_search_btn">Search</string>
+    <string name="form_back_btn">Back</string>
 </resources>
