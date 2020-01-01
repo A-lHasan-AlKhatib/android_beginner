@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/add_rec"
+        android:scrollbars="vertical"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/add_img"
+            android:layout_width="395dp"
+            android:layout_height="179dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/add_img_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:srcCompat="@drawable/laptop_icon" />
+
+        <EditText
+            android:id="@+id/add_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="60dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/add_name"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/add_img"
+            app:layout_constraintStart_toStartOf="@+id/add_img"
+            app:layout_constraintTop_toBottomOf="@+id/add_img" />
+
+        <EditText
+            android:id="@+id/add_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/card_price"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/add_name"
+            app:layout_constraintStart_toStartOf="@+id/add_name"
+            app:layout_constraintTop_toBottomOf="@+id/add_name" />
+
+        <EditText
+            android:id="@+id/add_field"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/add_filed_name"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toStartOf="@+id/add_map_isert"
+            app:layout_constraintStart_toStartOf="@+id/add_price"
+            app:layout_constraintTop_toBottomOf="@+id/add_price" />
+
+        <EditText
+            android:id="@+id/add_spec"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/add_spec_str"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/add_price"
+            app:layout_constraintStart_toStartOf="@+id/add_price"
+            app:layout_constraintTop_toBottomOf="@+id/add_field" />
+
+        <Button
+            android:id="@+id/add_map_isert"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@string/add_spec_str"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="@+id/add_field"
+            app:layout_constraintEnd_toEndOf="@+id/add_price"
+            app:layout_constraintTop_toTopOf="@+id/add_field" />
+
+        <Button
+            android:id="@+id/add_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/add_btn"
+            app:layout_constraintEnd_toEndOf="@+id/add_spec"
+            app:layout_constraintStart_toStartOf="@+id/add_spec"
+            app:layout_constraintTop_toBottomOf="@+id/add_spec" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Press on the piture to add new one"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

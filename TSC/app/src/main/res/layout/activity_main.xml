@@ -11,27 +11,9 @@
         android:id="@+id/main_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#39E1FD"
+        android:background="@color/colorPrimary"
         app:tabSelectedTextColor="@color/colorAccent"
-        app:tabTextColor="#000000">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_item_about"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_tab"/>
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_item_browse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/browse_tab"/>
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_item_maintenance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/maintenance_tab"/>
-
-    </com.google.android.material.tabs.TabLayout>
+        app:tabTextColor="#000000"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/main_view_pager"

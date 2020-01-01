@@ -4,11 +4,31 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import android.text.style.TabStopSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -28,6 +48,7 @@ public class BrowseFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView rv;
 
     private OnFragmentInteractionListener mListener;
 
@@ -63,10 +84,38 @@ public class BrowseFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_browse, container, false);
+        final View v = inflater.inflate(R.layout.fragment_browse, container, false);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("items")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<Item> items = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                Item item = document.toObject(Item.class);
+                                items.add(item);
+
+                            }
+                            rv = v.findViewById(R.id.browse_rec_view);
+                            ItemAdapter adapter = new ItemAdapter(items);
+                            rv.setAdapter(adapter);
+                            rv.setLayoutManager(new LinearLayoutManager(container.getContext()));
+                            rv.setHasFixedSize(true);
+                        } else {
+                            Toast.makeText(container.getContext(), "Check your connection", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -79,12 +128,6 @@ public class BrowseFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override

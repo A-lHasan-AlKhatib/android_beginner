@@ -11,73 +11,75 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/about_facebook_btn"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/about_frag_liner"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/face"
-            app:layout_constraintStart_toStartOf="@+id/about_map"
-            app:layout_constraintTop_toBottomOf="@+id/about_map"
-            android:contentDescription="@string/facebook_todo" />
-
-        <ImageButton
-            android:id="@+id/about_mail_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/ic_email_black_24dp"
-            app:layout_constraintStart_toEndOf="@+id/about_facebook_btn"
-            app:layout_constraintTop_toBottomOf="@+id/about_map"
-            android:contentDescription="@string/email_todo" />
-
-        <ImageButton
-            android:id="@+id/about-phone_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="32dp"
-            android:src="@drawable/phone"
-            app:layout_constraintEnd_toStartOf="@+id/about_tele_btn"
-            app:layout_constraintTop_toBottomOf="@+id/about_map"
-            android:contentDescription="@string/phone_todo" />
-
-        <ImageButton
-            android:id="@+id/about_tele_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:src="@drawable/ic_local_phone_black_24dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@+id/about_map"
-            app:layout_constraintTop_toBottomOf="@+id/about_map"
-            android:contentDescription="@string/tele_todo" />
+            app:layout_constraintStart_toStartOf="@+id/about_map"
+            app:layout_constraintTop_toBottomOf="@+id/about_map">
 
-        <ImageView
+            <ImageButton
+                android:id="@+id/about_facebook_btn"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/facebook_todo"
+                android:src="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/about_mail_btn"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/email_todo"
+                android:src="@drawable/ic_email_black_24dp" />
+
+            <ImageButton
+                android:id="@+id/about_phone_btn"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/email_todo"
+                android:src="@drawable/phone" />
+
+            <ImageButton
+                android:id="@+id/about_tele_btn"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/tele_todo"
+                android:src="@drawable/ic_local_phone_black_24dp" />
+        </LinearLayout>
+
+        <com.google.android.gms.maps.MapView
             android:id="@+id/about_map"
-            android:layout_width="329dp"
-            android:layout_height="212dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="0dp"
+            android:layout_height="220dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/backgrounds/scenic[9]"
-            android:contentDescription="@string/map_todo" />
+            />
 
         <TextView
             android:id="@+id/about_text_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="32dp"
             android:gravity="center"
             android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/about_map"
             app:layout_constraintStart_toStartOf="@+id/about_map"
-            app:layout_constraintTop_toBottomOf="@+id/about_mail_btn" />
+            app:layout_constraintTop_toBottomOf="@+id/about_frag_liner" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
